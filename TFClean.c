@@ -1,3 +1,12 @@
+/*
+|__   __| |  ____|  / ____|
+   | |    | |__    | |     
+   | |he  |  __|ail| |ollective     
+   | |    | |      | |____ 
+   |_|    |_|       \_____|
+Version 1.0 - TFClean
+*/
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -55,7 +64,7 @@ do {
 			pclose(fpipe);
 		}
 
-	}//end clear
+	}//end clear command
 
 	else if (strcmp(option, "exit") == 0)
 	{
@@ -78,4 +87,5 @@ do {
 
 
 }while (x < 1); //end first while
+return 0;
 }
