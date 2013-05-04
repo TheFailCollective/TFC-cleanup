@@ -3,15 +3,15 @@
 #include <stdlib.h>
 
 FILE *fpipe;
-char *time="date",option[132],command[132],variable[6][132],line[256],timeline[256],times[256],commander[132];
+char *time="date",option[132],options[132],command[132],variable[6][132],line[256],timeline[256],times[256],commander[132];
 int for_loop = 0, x = 0;
 main()
 {
 do {
-  printf (">> ");
+	printf (">> ");
 	if (fgets(line, sizeof(line), stdin)) {
  		if (1 == sscanf(line, "%s", option)) {
-			strcpy(option, line);
+			strcpy(options, line);
 		}
 	}
 
@@ -63,7 +63,7 @@ do {
 	}//end exit
 	else
 	{
-		if ( !(fpipe = (FILE*)popen(option,"r")) )
+		if ( !(fpipe = (FILE*)popen(options,"r")) )
                 {
                         perror("Problems with command");
                 }
