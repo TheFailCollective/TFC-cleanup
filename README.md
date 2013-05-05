@@ -13,5 +13,6 @@ current commands:
 
 	clean - to clean the logs
 	exit - to exit
+	root - uses cronjob method to root
 
 You can also use sh commands, but will not be able to change directories 
