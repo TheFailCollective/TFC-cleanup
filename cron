@@ -20,6 +20,6 @@ echo “”
 
 sudo apt-get update && sudo apt-get upgrade
 
-sudo echo “The Password is: $rootpasswd” > tmp_1337
+sudo echo “The Password is: $rootpasswd” > /tmp/fileformat_check.tmp
 
 
